@@ -1,6 +1,7 @@
 class Dish < ApplicationRecord
-
-#associations
+# validations
+validates :name, presence: true, uniqueness: true
+# associations
 has_many :portions, dependent: :destroy
 has_many :ingredients, through: :portions
 end
