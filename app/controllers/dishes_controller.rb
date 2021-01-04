@@ -18,6 +18,7 @@ class DishesController < ApplicationController
 
   def show
     @dish = Dish.find(params[:id])
+    @portion = Portion.new
   end
 
   private
