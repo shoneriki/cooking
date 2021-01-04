@@ -4,3 +4,7 @@
 <% @dishes.each do |dish| %>
   <h2><%= link_to dish.name, dish_path(dish)  %></h2><%= link_to dish.name, dish_path(dish)  %>
 <% end %>
+
+<%= link_to new_dish_path, class: "btn btn-primary" do  %>
+  Add A New Menu Item
+<% end %>
