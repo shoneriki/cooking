@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  root to: 'pages#home'
+  root to: 'dishes#index'
   resources :dishes, only: [:index, :show, :new, :create] do
-    resources :portions, only: [:new]
+    resources :portions, only: [:new, :create]
   end
 end
