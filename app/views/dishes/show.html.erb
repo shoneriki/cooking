@@ -6,7 +6,7 @@
 <% end %>
 
 <h1>What else should go into the dish?</h1>
-<%= simple_form_for [@dish, @dose] do |f| %>
+<%= simple_form_for [@dish, @portion] do |f| %>
   <%= f.input :description, label: "Quantity?", placeholder: "ex. 1 tbs" %>
   <%= f.association :ingredient, label: "Ingredient", collection: Ingredient.order(name: :asc), include_blank: false  %>
   <%= f.submit "Add It To The Dish" %>
