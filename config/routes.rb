@@ -3,4 +3,5 @@ Rails.application.routes.draw do
   resources :dishes, only: [:index, :show, :new, :create] do
     resources :portions, only: [:new, :create]
   end
+  resources :portions, only: :destroy
 end
