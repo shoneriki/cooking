@@ -2,9 +2,8 @@
 <h2>List of Dishes</h2>
 
 <% @dishes.each do |dish| %>
-  <h2><%= link_to dish.name, dish_path(dish)  %></h2>
   <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path dish.photo.key, height: 300, width: 400, crop: :fill %>')">
-    This Dish
+    <h2><%= link_to dish.name, dish_path(dish)  %></h2>
   </div>
 <% end %>
 
