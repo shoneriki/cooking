@@ -7,6 +7,7 @@ class PortionsController < ApplicationController
   def create
     @dish = Dish.find(params[:dish_id])
     @portion = Portion.new(portion_params)
+    @portion.dish = @dish
     if @portion.save
       redirect_to dish_path(@dish)
     else
