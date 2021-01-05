@@ -18,7 +18,7 @@ class PortionsController < ApplicationController
   def destroy
     @portion= Portion.find(params[:id])
     @portion.destroy
-    redirect_to dish_path(@dish.cocktail)
+    redirect_to dish_path(@portion.dish)
   end
 
   private

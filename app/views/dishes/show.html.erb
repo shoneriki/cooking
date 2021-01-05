@@ -2,8 +2,8 @@
 
 <h2>Here's what goes in apparently</h2>
 <% @dish.portions.each do |portion| %>
-  <%= "#{portion.description} of #{dose.ingredient.name.downcase}" %>
-  <%= link_to portion_path(portion), class: "btn btn-primary", method: :delete, data: { confirm: "Take out the #{portion.ingredient.name.downcase?}"} do %>
+  <%= "#{portion.description} of #{portion.ingredient.name.downcase}" %>
+  <%= link_to portion_path(portion), class: "btn btn-primary", method: :delete, data: { confirm: "Take out the #{portion.ingredient.name.downcase}?"} do %>
     <i class="fas fa-trash"></i>
   <% end  %>
 <% end %>
