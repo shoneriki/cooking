@@ -7,11 +7,18 @@ class PortionsController < ApplicationController
   def create
     @dish = Dish.find(params[:dish_id])
     @portion = Portion.new(portion_params)
+    @portion.dish = @dish
     if @portion.save
       redirect_to dish_path(@dish)
     else
       render dish_path(@dish)
     end
+  end
+
+  def destroy
+    @portion= Portion.find(params[:id])
+    @portion.destroy
+    redirect_to dish_path(@portion.dish)
   end
 
   private

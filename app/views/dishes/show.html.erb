@@ -2,12 +2,16 @@
 
 <h2>Here's what goes in apparently</h2>
 <% @dish.portions.each do |portion| %>
-  <%= "#{portion.description} of #{dose.ingredient.name.downcase}" %>
+  <%= "#{portion.description} of #{portion.ingredient.name.downcase}" %>
+  <%= link_to portion_path(portion), class: "btn btn-primary", method: :delete, data: { confirm: "Take out the #{portion.ingredient.name.downcase}?"} do %>
+    <i class="fas fa-trash"></i>
+  <% end  %>
 <% end %>
+
 
 <h1>What else should go into the dish?</h1>
 <%= simple_form_for [@dish, @portion] do |f| %>
-  <%= f.input :description, label: "Quantity?", placeholder: "ex. 1 tbs" %>
+  <%= f.input :description, label: "Quantity?", placeholder: "ex. 1 tbs", label_html: { class: ''} %>
   <%= f.association :ingredient, label: "Ingredient", collection: Ingredient.order(name: :asc), include_blank: false  %>
   <%= f.submit "Add It To The Dish" %>
 <% end %>
