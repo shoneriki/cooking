@@ -2,31 +2,48 @@
 <div class="dish-show-section">
   <div class="container pt-5 pb-3">
     <div class="row">
-      <div class="col-5">
+      <div class="col-6">
         <% if @dish.photo.attached? %>
           <%= cl_image_tag @dish.photo.key, height: 400, width: 400, crop: :fill, class: "dish-show-photo" %>
         <% else %>
           <img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.pinterest.com%2Fpin%2F632755816384152464%2F&psig=AOvVaw30Yk6ZG5xs-t2phYxMfWd-&ust=1610001481638000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCKjArffYhu4CFQAAAAAdAAAAABAV" alt="Dish Photo" class="dish-show-photo">
         <% end %>
       </div>
-      <div class="col-7">
+      <div class="col-6">
         <h1><%= @dish.name %></h1>
       </div>
     </div>
   </div>
 </div>
 
+<div class="ingredients-section">
+  <div class="container p-5">
+    <div class="row">
+      <div class="col-6">
+        <h2>Here's What Goes In</h2>
+        <div class="ingredients-list">
+          <% @dish.portions.each do |portion| %>
+            <p class="container d-flex justify-content-between">
+            <%= "#{portion.description} of #{portion.ingredient.name.downcase}" %>
+            <%= link_to portion_path(portion), class: "btn btn-primary", method: :delete, data: { confirm: "Take out the #{portion.ingredient.name.downcase}?"} do %>
+              <i class="fas fa-trash"></i>
+            <% end  %>
+          </p>
+        <% end %>
+      </div>
+    </div>
 
-<h2>Here's what goes in apparently</h2>
-<% @dish.portions.each do |portion| %>
-  <%= "#{portion.description} of #{portion.ingredient.name.downcase}" %>
-  <%= link_to portion_path(portion), class: "btn btn-primary", method: :delete, data: { confirm: "Take out the #{portion.ingredient.name.downcase}?"} do %>
-    <i class="fas fa-trash"></i>
-  <% end  %>
-<% end %>
+    <div class="col-6">
+      <h1>What else should go into the dish?</h1>
+    </div>
 
 
-<h1>What else should go into the dish?</h1>
+    </div>
+  </div>
+</div>
+
+
+
 <%= simple_form_for [@dish, @portion] do |f| %>
   <%= f.input :description, label: "Quantity?", placeholder: "ex. 1 tbs", label_html: { class: ''} %>
   <%= f.association :ingredient, label: "Ingredient", collection: Ingredient.order(name: :asc), include_blank: false  %>
